@@ -16,6 +16,7 @@
 		3215857028CA21AC00976FB9 /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215856F28CA21AC00976FB9 /* TicTacToeTests.swift */; };
 		3215857A28CA21AC00976FB9 /* TicTacToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215857928CA21AC00976FB9 /* TicTacToeUITests.swift */; };
 		3215857C28CA21AC00976FB9 /* TicTacToeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215857B28CA21AC00976FB9 /* TicTacToeUITestsLaunchTests.swift */; };
+		3215858928CA23D000976FB9 /* plan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3215858828CA23D000976FB9 /* plan.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		3215857528CA21AC00976FB9 /* TicTacToeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3215857928CA21AC00976FB9 /* TicTacToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITests.swift; sourceTree = "<group>"; };
 		3215857B28CA21AC00976FB9 /* TicTacToeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3215858828CA23D000976FB9 /* plan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = plan.jpg; path = Assets.xcassets/plan.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				3215855C28CA21AA00976FB9 /* ViewController.swift */,
 				3215855E28CA21AA00976FB9 /* Main.storyboard */,
 				3215856128CA21AB00976FB9 /* Assets.xcassets */,
+				3215858828CA23D000976FB9 /* plan.jpg */,
 				3215856328CA21AB00976FB9 /* LaunchScreen.storyboard */,
 				3215856628CA21AB00976FB9 /* Info.plist */,
 			);
@@ -233,6 +236,7 @@
 			files = (
 				3215856528CA21AB00976FB9 /* LaunchScreen.storyboard in Resources */,
 				3215856228CA21AB00976FB9 /* Assets.xcassets in Resources */,
+				3215858928CA23D000976FB9 /* plan.jpg in Resources */,
 				3215856028CA21AA00976FB9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
