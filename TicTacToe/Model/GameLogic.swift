@@ -51,11 +51,6 @@ class GameLogic {
         }
     }
     func resetGame(index: Int, btns: Array<UIButton>){
-        playerTurn = true
-        for _ in btns{
-            btns[index].setTitle("", for: .normal)
-        }
-        player1Array?.removeAll()
-        player2Array?.removeAll()
+        
     }
 }
