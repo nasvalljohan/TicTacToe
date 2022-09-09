@@ -7,6 +7,7 @@ class GameLogic {
     var playerTurn: Bool = true
     var player1Array: Array<Int>?
     var player2Array: Array<Int>?
+    var playerWon: Bool?
     
     var winConditions: Array<Array<Int>> = [
             [0, 1, 2],
@@ -26,9 +27,9 @@ class GameLogic {
             playerTurn = !playerTurn
             if (player1Array?.append(index)) == nil {
                 player1Array = [index]
-                checkWinner(userArray: player1Array ?? [])
+                _ = checkWinner(userArray: player1Array ?? [])
             } else{
-                checkWinner(userArray: player1Array ?? [])
+                playerWon = checkWinner(userArray: player1Array ?? [])
             }
             
         }else if playerTurn != true && buttons[index].titleLabel?.text == nil{
@@ -37,20 +38,28 @@ class GameLogic {
             buttons[index].titleLabel?.font =  .systemFont(ofSize: 80)
             if (player2Array?.append(index)) == nil {
                 player2Array = [index]
-                checkWinner(userArray: player2Array ?? [])
+                _ = checkWinner(userArray: player2Array ?? [])
             } else{
-                checkWinner(userArray: player2Array ?? [])
+                playerWon = checkWinner(userArray: player2Array ?? [])
             }
         }
     }
-    func checkWinner(userArray: Array<Int>){
+    
+    func checkWinner(userArray: Array<Int>) -> Bool{
         for condition in winConditions{
             if condition.allSatisfy(userArray.contains){
-                print("winner")
+                return true
             }
         }
+        return false
     }
-    func resetGame(index: Int, btns: Array<UIButton>){
+    
+    func resetGame(buttons: [UIButton]){
+        if playerWon == true{
+            print("We got a winner now")
+        }else{
+            print("No winner yet")
+        }
         
     }
 }
