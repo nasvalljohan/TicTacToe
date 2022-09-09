@@ -17,6 +17,8 @@
 		3215857A28CA21AC00976FB9 /* TicTacToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215857928CA21AC00976FB9 /* TicTacToeUITests.swift */; };
 		3215857C28CA21AC00976FB9 /* TicTacToeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215857B28CA21AC00976FB9 /* TicTacToeUITestsLaunchTests.swift */; };
 		3215858928CA23D000976FB9 /* plan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3215858828CA23D000976FB9 /* plan.jpg */; };
+		3215858E28CB355500976FB9 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215858D28CB355500976FB9 /* Player.swift */; };
+		3215859028CB376B00976FB9 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215858F28CB376B00976FB9 /* GameLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		3215857928CA21AC00976FB9 /* TicTacToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITests.swift; sourceTree = "<group>"; };
 		3215857B28CA21AC00976FB9 /* TicTacToeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3215858828CA23D000976FB9 /* plan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = plan.jpg; path = Assets.xcassets/plan.jpg; sourceTree = "<group>"; };
+		3215858D28CB355500976FB9 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3215858F28CB376B00976FB9 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 		3215855728CA21AA00976FB9 /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				3215858B28CB344100976FB9 /* ViewController */,
+				3215858A28CB343B00976FB9 /* Model */,
 				3215855828CA21AA00976FB9 /* AppDelegate.swift */,
 				3215855A28CA21AA00976FB9 /* SceneDelegate.swift */,
 				3215855C28CA21AA00976FB9 /* ViewController.swift */,
@@ -128,6 +134,22 @@
 				3215857B28CA21AC00976FB9 /* TicTacToeUITestsLaunchTests.swift */,
 			);
 			path = TicTacToeUITests;
+			sourceTree = "<group>";
+		};
+		3215858A28CB343B00976FB9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3215858D28CB355500976FB9 /* Player.swift */,
+				3215858F28CB376B00976FB9 /* GameLogic.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3215858B28CB344100976FB9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +284,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3215858E28CB355500976FB9 /* Player.swift in Sources */,
 				3215855D28CA21AA00976FB9 /* ViewController.swift in Sources */,
 				3215855928CA21AA00976FB9 /* AppDelegate.swift in Sources */,
+				3215859028CB376B00976FB9 /* GameLogic.swift in Sources */,
 				3215855B28CA21AA00976FB9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
