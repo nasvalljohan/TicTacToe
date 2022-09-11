@@ -63,3 +63,8 @@ class GameLogic {
         
     }
 }
+// MARK: TODO:
+// Possible to move checkWinner() into buttonPressed()?
+// Add Draw
+// Add player names and inputs
+// Add timer for players
