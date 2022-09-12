@@ -1,4 +1,3 @@
-
 import Foundation
 import UIKit
 
@@ -19,52 +18,44 @@ class GameLogic {
             [0, 4, 8],
             [2, 4, 6]]
     
-    
     func buttonPressed(index: Int, buttons: Array<UIButton>){
+        //player 1
         if playerTurn == true && buttons[index].titleLabel?.text == nil {
             buttons[index].setTitle("O", for: .normal)
             buttons[index].titleLabel?.font = .systemFont(ofSize: 80)
             playerTurn = !playerTurn
             if (player1Array?.append(index)) == nil {
                 player1Array = [index]
-                _ = checkWinner(userArray: player1Array ?? [])
             } else{
-                playerWon = checkWinner(userArray: player1Array ?? [])
+                //Win condition
+                for condition in winConditions{
+                    if condition.allSatisfy(player1Array!.contains){
+                        print("player 1 won")
+                    }
+                }
             }
-            
+            //player 2
         }else if playerTurn != true && buttons[index].titleLabel?.text == nil{
             buttons[index].setTitle("X", for: .normal)
             playerTurn = !playerTurn
             buttons[index].titleLabel?.font =  .systemFont(ofSize: 80)
             if (player2Array?.append(index)) == nil {
                 player2Array = [index]
-                _ = checkWinner(userArray: player2Array ?? [])
             } else{
-                playerWon = checkWinner(userArray: player2Array ?? [])
+                //Win condition
+                for condition in winConditions{
+                    if condition.allSatisfy(player2Array!.contains){
+                        print("player 2 won")
+                    }
+                }
             }
         }
     }
     
-    func checkWinner(userArray: Array<Int>) -> Bool{
-        for condition in winConditions{
-            if condition.allSatisfy(userArray.contains){
-                return true
-            }
-        }
-        return false
-    }
-    
-    func resetGame(buttons: [UIButton]){
-        if playerWon == true{
-            print("We got a winner now")
-        }else{
-            print("No winner yet")
-        }
-        
-    }
+
+
 }
-// MARK: TODO:
-// Possible to move checkWinner() into buttonPressed()?
+// MARK: TODO
 // Add Draw
 // Add player names and inputs
 // Add timer for players
