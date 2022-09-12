@@ -3,10 +3,16 @@ import UIKit
 
 class GameLogic {
     
+    var player1: Player = Player(playerName: "Player 1", score: 0)
+    var player2: Player = Player(playerName: "Player 2", score: 0)
+    
+    
     var playerTurn: Bool = true
     var player1Array: Array<Int> = []
     var player2Array: Array<Int> = []
-    var playerWon: Bool = false
+    var player1Won: Bool = false
+    var player2Won: Bool = false
+    var gameDraw: Bool = false
     var drawConditions: Array<Array<Int>> = [[0]]
     var winConditions: Array<Array<Int>> = [
             [0, 1, 2], // 0
@@ -18,9 +24,25 @@ class GameLogic {
             [0, 4, 8], // 6
             [2, 4, 6]] // 7
     
+    func resetAfterWin(buttons: Array<UIButton>){
+        if player1Won{
+            player1.score += 1
+        }else if player2Won{
+            player2.score += 1
+        }
+        player1Won = false
+        player1Array = []
+        player2Array = []
+        player2Won = false
+        gameDraw = false
+        for i in 0...8 {
+            buttons[i].setTitle(" ", for: .normal)
+        }
+    }
+    
     func buttonPressed(index: Int, buttons: Array<UIButton>){
         //player 1
-        if playerTurn == true && buttons[index].titleLabel?.text == nil {
+        if playerTurn == true && buttons[index].titleLabel?.text == " " {
             buttons[index].setTitle("O", for: .normal)
             buttons[index].titleLabel?.font = .systemFont(ofSize: 80)
             playerTurn = !playerTurn
@@ -29,7 +51,7 @@ class GameLogic {
             checkWinner(playerArr: player1Array)
             
             //player 2
-        }else if playerTurn != true && buttons[index].titleLabel?.text == nil{
+        }else if playerTurn != true && buttons[index].titleLabel?.text == " "{
             buttons[index].setTitle("X", for: .normal)
             playerTurn = !playerTurn
             buttons[index].titleLabel?.font =  .systemFont(ofSize: 80)
@@ -43,12 +65,10 @@ class GameLogic {
         tryDraw()
         for condition in winConditions{
             if condition.allSatisfy(playerArr.contains){
-                playerWon = true
-                print("win condition reached")
                 if playerTurn == true {
-                    print("player 2 won")
+                    player1Won = true
                 }else {
-                    print("player 1 won")
+                    player2Won = true
                 }
             }
         }
@@ -80,12 +100,13 @@ class GameLogic {
             }
         }
         if drawConditions.count == 8 || drawConditions.count > 7 && !playerTurn {
-            print("draw")
+            gameDraw = true
+            
         }
     }
 
 }
 // MARK: TODO
-// Add reset on same page
+// Add something to stop inputs on playfield on win/draw
 // Add player names and inputs
 // Add timer for players

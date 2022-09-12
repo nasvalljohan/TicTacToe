@@ -37,6 +37,7 @@
                                                     <constraint firstAttribute="height" constant="80" id="or4-0r-QkO"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QVi-q1-ieN"/>
                                                 </connections>
@@ -48,6 +49,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="ECD-R3-zxI"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3vA-Zx-zW5"/>
                                                 </connections>
@@ -59,6 +61,7 @@
                                                     <constraint firstAttribute="height" constant="80" id="YhO-dk-SQP"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mGO-fK-6cj"/>
                                                 </connections>
@@ -75,6 +78,7 @@
                                                     <constraint firstAttribute="height" constant="80" id="5AB-DK-hO2"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mWS-JV-jMd"/>
                                                 </connections>
@@ -86,6 +90,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="xhf-cq-CfE"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3dy-kt-vLJ"/>
                                                 </connections>
@@ -97,6 +102,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="sPa-9O-ScC"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="87e-V5-VOz"/>
                                                 </connections>
@@ -113,6 +119,7 @@
                                                     <constraint firstAttribute="height" constant="80" id="JUC-iQ-GFA"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rxq-bn-ZeK"/>
                                                 </connections>
@@ -124,6 +131,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="rHZ-07-5ru"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J4z-DN-gwS"/>
                                                 </connections>
@@ -135,6 +143,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="hhG-zH-1OY"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=" "/>
                                                 <connections>
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ar5-Xe-OU0"/>
                                                 </connections>
@@ -143,12 +152,24 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpX-Re-Tnz">
+                                <rect key="frame" x="150" y="726.5" width="114" height="30.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Play again?"/>
+                                <connections>
+                                    <action selector="playAgainPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7fQ-Ye-Cbq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jtE-Fb-mNX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1IF-4z-sLN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r6Q-00-VtV" secondAttribute="trailing" constant="45" id="2fz-dh-OA2"/>
+                            <constraint firstItem="PpX-Re-Tnz" firstAttribute="top" secondItem="jtE-Fb-mNX" secondAttribute="bottom" constant="90" id="3lI-Hs-1Qs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PpX-Re-Tnz" secondAttribute="trailing" constant="150" id="4gL-Fg-kkA"/>
+                            <constraint firstItem="PpX-Re-Tnz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="150" id="Ixd-Ee-07c"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PpX-Re-Tnz" secondAttribute="bottom" constant="92" id="aTq-FA-g6m"/>
                             <constraint firstItem="r6Q-00-VtV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f63-qA-NGr"/>
                             <constraint firstItem="r6Q-00-VtV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="245" id="hh8-cJ-S4p"/>
                             <constraint firstItem="jtE-Fb-mNX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hoS-Wd-2E2"/>
@@ -158,6 +179,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnPlayAgain" destination="PpX-Re-Tnz" id="HPl-ix-GEk"/>
                         <outletCollection property="buttons" destination="3pi-P3-lMg" collectionClass="NSMutableArray" id="OEY-aP-ViC"/>
                         <outletCollection property="buttons" destination="hQK-kO-dSg" collectionClass="NSMutableArray" id="pbV-fh-hWy"/>
                         <outletCollection property="buttons" destination="cPQ-rj-FtN" collectionClass="NSMutableArray" id="f4x-gr-yUR"/>

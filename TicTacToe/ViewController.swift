@@ -3,6 +3,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var btnPlayAgain: UIButton!
     @IBOutlet var buttons: [UIButton]!
     var gameLogic = GameLogic()
     
@@ -11,6 +12,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view
     }
 
+    @IBAction func playAgainPress(_ sender: Any) {
+        gameLogic.resetAfterWin(buttons: buttons)
+    }
     @IBAction func onPress(_ sender: UIButton) {
         switch sender {
         case buttons[0]:

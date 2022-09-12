@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct player {
+struct Player {
 
     var playerName: String
     var score: Int
