@@ -125,7 +125,7 @@
                                                     <action selector="onPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rxq-bn-ZeK"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUQ-RE-BDR">
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUQ-RE-BDR">
                                                 <rect key="frame" x="0.0" y="110" width="94.5" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="Ojg-R5-st5"/>

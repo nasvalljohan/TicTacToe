@@ -3,12 +3,7 @@ import UIKit
 
 class GameLogic {
     
-    // MARK: Game states
-    let STATUS_GAME_INACTIVE = -1
-    let STATUS_GAME_ACTIVE = 0
-    let STATUS_GAME_DRAW = 1
-    let STATUS_GAME_PLAYER1WIN = 2
-    let STATUS_GAME_PLAYER2WIN = 3
+    var CURRENT_GAME_STATE: Int = 0
     
     // MARK: Instances
     var player1: Player
@@ -37,7 +32,6 @@ class GameLogic {
         [0, 4, 8], // 6
         [2, 4, 6]] // 7
     
-    
     // MARK: ResetAfterWin
     func resetAfterWin(buttons: Array<UIButton>){
         player1Won = false
@@ -57,40 +51,23 @@ class GameLogic {
     }
     
     // MARK: ButtonPressed
-    func buttonPressed(index: Int, buttons: Array<UIButton>){
+    func buttonPressed(tag: Int){
         //player 1
-        if playerTurn == true && buttons[index].titleLabel?.text == " " {
-            buttons[index].setTitle("O", for: .normal)
-            buttons[index].titleLabel?.font = .systemFont(ofSize: 80)
-            player1Array.append(index)
-            //Win condition
-            let gameOver = checkWinner(playerArr: player1Array)
-            if gameOver == true{
-                for button in buttons {
-                    button.isUserInteractionEnabled = false
-                }
-            }
-            playerTurn = !playerTurn
+        if playerTurn == true{
+            player1Array.append(tag)
+            checkWinner(playerArr: player1Array)
+            playerTurn = false
             
             //player 2
-        }else if playerTurn != true && buttons[index].titleLabel?.text == " "{
-            buttons[index].setTitle("X", for: .normal)
-            buttons[index].titleLabel?.font =  .systemFont(ofSize: 80)
-            player2Array.append(index)
-            // Win condition
-            let gameOver = checkWinner(playerArr: player2Array)
-            if gameOver == true{
-                for button in buttons {
-                    button.isUserInteractionEnabled = false
-                }
-            }
-            
-            playerTurn = !playerTurn
+        }else if playerTurn != true{
+            player2Array.append(tag)
+            checkWinner(playerArr: player2Array)
+            playerTurn = true
         }
     }
     
-    // MARK: CheckWinner
-    func checkWinner(playerArr: Array<Int>) -> Bool{
+    // MARK: CheckWinner, contains no UI
+    func checkWinner(playerArr: Array<Int>){
         
         for (_, condition) in winConditions.enumerated() {
             // Elements of inner array
@@ -129,35 +106,23 @@ class GameLogic {
                 }
             }
         }
-        print(winConditions.count - drawConditions.count)
-        print("NR of drawcond \(drawConditions.count)")
-        print("NR of wincond \(winConditions.count)")
-        if winConditions.count - drawConditions.count == 1{
-            print("its a draw")
-            return true
+        if winConditions.count - drawConditions.count == 0 {
+            print("its a draw, cond - cond = 0")
         } else if winConditions.allSatisfy(drawConditions.contains){
-           print("its a draw")
-            return true
+           print("its a draw, cond allsatisfy cond contain")
         } else{
             for condition in winConditions{
                 if condition.allSatisfy(playerArr.contains){
                     if playerTurn == true {
                         print("player 1 won")
                         player1Won = true
-                        player1.score += 1
-                        return true
                     }else{
                         print("player 2 won")
                         player2Won = true
-                        player2.score += 1
-                        return true
                     }
                 }
             }
         }
-        return false
     }
-
-
 } // Last close
 
