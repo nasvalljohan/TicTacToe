@@ -156,31 +156,51 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpX-Re-Tnz">
                                 <rect key="frame" x="140" y="728.5" width="134" height="32.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Play again?"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Play again?"/>
                                 <connections>
                                     <action selector="playAgainPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7fQ-Ye-Cbq"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTz-7e-FLC">
+                                <rect key="frame" x="100" y="688" width="214" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label turn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdr-ws-m9K">
+                                <rect key="frame" x="100" y="688" width="214" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jtE-Fb-mNX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1IF-4z-sLN"/>
+                            <constraint firstItem="cdr-ws-m9K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="1eB-eT-BnQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r6Q-00-VtV" secondAttribute="trailing" constant="45" id="2fz-dh-OA2"/>
                             <constraint firstItem="PpX-Re-Tnz" firstAttribute="top" secondItem="jtE-Fb-mNX" secondAttribute="bottom" constant="90" id="3lI-Hs-1Qs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PpX-Re-Tnz" secondAttribute="trailing" constant="140" id="4gL-Fg-kkA"/>
+                            <constraint firstItem="PpX-Re-Tnz" firstAttribute="top" secondItem="RTz-7e-FLC" secondAttribute="bottom" constant="20" id="8Xo-Kz-zwn"/>
                             <constraint firstItem="PpX-Re-Tnz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="140" id="Ixd-Ee-07c"/>
+                            <constraint firstItem="PpX-Re-Tnz" firstAttribute="top" secondItem="cdr-ws-m9K" secondAttribute="bottom" constant="20" id="MO8-m3-e0a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PpX-Re-Tnz" secondAttribute="bottom" constant="92" id="aTq-FA-g6m"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RTz-7e-FLC" secondAttribute="trailing" constant="100" id="eRB-Lq-Ceh"/>
                             <constraint firstItem="r6Q-00-VtV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f63-qA-NGr"/>
                             <constraint firstItem="r6Q-00-VtV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="245" id="hh8-cJ-S4p"/>
                             <constraint firstItem="jtE-Fb-mNX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hoS-Wd-2E2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r6Q-00-VtV" secondAttribute="bottom" constant="260" id="iMv-8m-57A"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cdr-ws-m9K" secondAttribute="trailing" constant="100" id="igQ-wT-1gb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jtE-Fb-mNX" secondAttribute="trailing" constant="12" id="jFv-5q-Kgt"/>
+                            <constraint firstItem="RTz-7e-FLC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="jdA-3l-Or4"/>
                             <constraint firstItem="r6Q-00-VtV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="qWb-tt-L8c"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnPlayAgain" destination="PpX-Re-Tnz" id="HPl-ix-GEk"/>
+                        <outlet property="lblTurn" destination="cdr-ws-m9K" id="YpP-hA-rfG"/>
+                        <outlet property="lblWinner" destination="RTz-7e-FLC" id="l1R-pR-giN"/>
                         <outletCollection property="buttons" destination="3pi-P3-lMg" collectionClass="NSMutableArray" id="OEY-aP-ViC"/>
                         <outletCollection property="buttons" destination="hQK-kO-dSg" collectionClass="NSMutableArray" id="pbV-fh-hWy"/>
                         <outletCollection property="buttons" destination="cPQ-rj-FtN" collectionClass="NSMutableArray" id="f4x-gr-yUR"/>

@@ -5,6 +5,12 @@ class GameLogic {
     
     var CURRENT_GAME_STATE: Int = 0
     
+    var GAME_STATUS_PLAYER1WON: Int = 1
+    var GAME_STATUS_PLAYER2WON: Int = 2
+    var GAME_STATUS_GAMEDRAW: Int = -1
+    var GAME_STATUS_PLAYER1TURN: Int = 11
+    var GAME_STATUS_PLAYER2TURN: Int = 22
+    
     // MARK: Instances
     var player1: Player
     var player2: Player
@@ -17,10 +23,10 @@ class GameLogic {
     // MARK: Variables
     var playerTurn: Bool = true
     var roundCounter: Int = 0
+    var player1won: Bool = false
+    var player2won: Bool = false
     var player1Array: Array<Int> = []
     var player2Array: Array<Int> = []
-    var player1Won: Bool = false
-    var player2Won: Bool = false
     var drawConditions: Array<Array<Int>> = []
     var winConditions: Array<Array<Int>> = [
         [0, 1, 2], // 0
@@ -33,59 +39,61 @@ class GameLogic {
         [2, 4, 6]] // 7
     
     // MARK: ResetAfterWin
-    func resetAfterWin(buttons: Array<UIButton>){
-        player1Won = false
-        player2Won = false
+    func resetAfterWin(){
         player1Array = []
         player2Array = []
+        player1won = false
+        player2won = false
         roundCounter += 1
         drawConditions = []
-        for button in buttons{
-            button.setTitle(" ", for: .normal)
-            button.isUserInteractionEnabled = true
-        }
-        print("Current round is: \(roundCounter)")
-        print("Player 1 score is: \(player1.score)")
-        print("Player 2 score is: \(player2.score)")
-        
+        CURRENT_GAME_STATE = 0
     }
     
-    // MARK: ButtonPressed
-    func buttonPressed(tag: Int){
+    func buttonPressed(tag: Int) -> Int{
         //player 1
         if playerTurn == true{
             player1Array.append(tag)
-            checkWinner(playerArr: player1Array)
             playerTurn = false
-            
             //player 2
         }else if playerTurn != true{
             player2Array.append(tag)
-            checkWinner(playerArr: player2Array)
             playerTurn = true
         }
+        
+        let result = checkWinner(playerArr: playerTurn ? player2Array : player1Array)
+        
+        if result != 0 {
+            CURRENT_GAME_STATE = result
+            return CURRENT_GAME_STATE
+        }
+        
+        if playerTurn {
+            CURRENT_GAME_STATE = GAME_STATUS_PLAYER1TURN
+        } else {
+            CURRENT_GAME_STATE = GAME_STATUS_PLAYER2TURN
+        }
+        return CURRENT_GAME_STATE
     }
     
     // MARK: CheckWinner, contains no UI
-    func checkWinner(playerArr: Array<Int>){
-        
+    func checkWinner(playerArr: Array<Int>) -> Int{
         for (_, condition) in winConditions.enumerated() {
             // Elements of inner array
             for _ in condition{
                 // Does playerarrays contain numbers from same wincondition?
                 // if yes add that winCondition to drawCondition
                 if player1Array.contains(condition[0]) && player2Array.contains(condition[1]) || player1Array.contains(condition[1]) && player2Array.contains(condition[0]){
-        
+                    
                     for _ in winConditions{
                         if drawConditions.contains(condition){
                         }else {
                             drawConditions.append(condition)
                         }
                     }
-        
+                    
                     // 1-2 2-1 <- Possible combination - Same as above diff index in condition
                 } else if player1Array.contains(condition[1]) && player2Array.contains(condition[2]) || player1Array.contains(condition[2]) && player2Array.contains(condition[1]){
-        
+                    
                     for _ in winConditions{
                         if drawConditions.contains(condition){
                         }else {
@@ -93,10 +101,10 @@ class GameLogic {
                         }
                     }
                 }
-        
+                
                 // 2-0 0-2 <- Possible combination - Same as above diff index in condition
                 else if player1Array.contains(condition[0]) && player2Array.contains(condition[2]) || player1Array.contains(condition[2]) && player2Array.contains(condition[0]){
-        
+                    
                     for _ in winConditions{
                         if drawConditions.contains(condition){
                         }else {
@@ -107,22 +115,23 @@ class GameLogic {
             }
         }
         if winConditions.count - drawConditions.count == 0 {
-            print("its a draw, cond - cond = 0")
+            return GAME_STATUS_GAMEDRAW
         } else if winConditions.allSatisfy(drawConditions.contains){
-           print("its a draw, cond allsatisfy cond contain")
+            return GAME_STATUS_GAMEDRAW
         } else{
             for condition in winConditions{
                 if condition.allSatisfy(playerArr.contains){
                     if playerTurn == true {
-                        print("player 1 won")
-                        player1Won = true
+                        return GAME_STATUS_PLAYER2WON
+                        
                     }else{
-                        print("player 2 won")
-                        player2Won = true
+                        return GAME_STATUS_PLAYER1WON
+                        
                     }
                 }
             }
         }
+    return 0
     }
 } // Last close
 
