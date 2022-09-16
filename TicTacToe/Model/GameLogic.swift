@@ -28,17 +28,9 @@ class GameLogic {
     var player1Array: Array<Int> = []
     var player2Array: Array<Int> = []
     var drawConditions: Array<Array<Int>> = []
-    var winConditions: Array<Array<Int>> = [
-        [0, 1, 2], // 0
-        [3, 4, 5], // 1
-        [6, 7, 8], // 2
-        [0, 3, 6], // 3
-        [1, 4, 7], // 4
-        [2, 5, 8], // 5
-        [0, 4, 8], // 6
-        [2, 4, 6]] // 7
+    var winConditions: Array<Array<Int>> = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]]
     
-    // MARK: ResetAfterWin
+    // MARK: Func
     func resetAfterWin(){
         player1Array = []
         player2Array = []
@@ -49,17 +41,20 @@ class GameLogic {
         CURRENT_GAME_STATE = 0
     }
     
-    func buttonPressed(tag: Int) -> Int{
+    func switchTurn(tag: Int){
         //player 1
         if playerTurn == true{
             player1Array.append(tag)
             playerTurn = false
-            //player 2
+            
+        //player 2
         }else if playerTurn != true{
             player2Array.append(tag)
             playerTurn = true
         }
-        
+    }
+    
+    func buttonPressed() -> Int{
         let result = checkWinner(playerArr: playerTurn ? player2Array : player1Array)
         
         if result != 0 {
@@ -67,7 +62,7 @@ class GameLogic {
             return CURRENT_GAME_STATE
         }
         
-        if playerTurn {
+        if playerTurn == true {
             CURRENT_GAME_STATE = GAME_STATUS_PLAYER1TURN
         } else {
             CURRENT_GAME_STATE = GAME_STATUS_PLAYER2TURN
@@ -75,7 +70,7 @@ class GameLogic {
         return CURRENT_GAME_STATE
     }
     
-    // MARK: CheckWinner, contains no UI
+    // MARK: CheckWinner
     func checkWinner(playerArr: Array<Int>) -> Int{
         for (_, condition) in winConditions.enumerated() {
             // Elements of inner array
@@ -85,31 +80,21 @@ class GameLogic {
                 if player1Array.contains(condition[0]) && player2Array.contains(condition[1]) || player1Array.contains(condition[1]) && player2Array.contains(condition[0]){
                     
                     for _ in winConditions{
-                        if drawConditions.contains(condition){
-                        }else {
-                            drawConditions.append(condition)
-                        }
-                    }
-                    
-                    // 1-2 2-1 <- Possible combination - Same as above diff index in condition
-                } else if player1Array.contains(condition[1]) && player2Array.contains(condition[2]) || player1Array.contains(condition[2]) && player2Array.contains(condition[1]){
-                    
-                    for _ in winConditions{
-                        if drawConditions.contains(condition){
-                        }else {
-                            drawConditions.append(condition)
-                        }
+                        if drawConditions.contains(condition){}else {drawConditions.append(condition)}
                     }
                 }
-                
+                // 1-2 2-1 <- Possible combination - Same as above diff index in condition
+                else if player1Array.contains(condition[1]) && player2Array.contains(condition[2]) || player1Array.contains(condition[2]) && player2Array.contains(condition[1]){
+                    
+                    for _ in winConditions{
+                        if drawConditions.contains(condition){}else {drawConditions.append(condition)}
+                    }
+                }
                 // 2-0 0-2 <- Possible combination - Same as above diff index in condition
                 else if player1Array.contains(condition[0]) && player2Array.contains(condition[2]) || player1Array.contains(condition[2]) && player2Array.contains(condition[0]){
                     
                     for _ in winConditions{
-                        if drawConditions.contains(condition){
-                        }else {
-                            drawConditions.append(condition)
-                        }
+                        if drawConditions.contains(condition){}else {drawConditions.append(condition)}
                     }
                 }
             }
@@ -131,7 +116,7 @@ class GameLogic {
                 }
             }
         }
-    return 0
+        return 0
     }
 } // Last close
 
