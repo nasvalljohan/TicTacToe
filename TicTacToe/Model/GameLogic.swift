@@ -25,6 +25,8 @@ class GameLogic {
     var roundCounter: Int = 0
     var player1won: Bool = false
     var player2won: Bool = false
+    var boardArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    var computerMove: Array<Int> = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     var player1Array: Array<Int> = []
     var player2Array: Array<Int> = []
     var drawConditions: Array<Array<Int>> = []
@@ -39,19 +41,37 @@ class GameLogic {
         roundCounter += 1
         drawConditions = []
         CURRENT_GAME_STATE = 0
+        boardArray = [0,0,0,0,0,0,0,0,0]
     }
     
-    func switchTurn(tag: Int){
-        //player 1
+    func switchTurn(tag: Int) -> Int{
+        //Player 1
         if playerTurn == true{
             player1Array.append(tag)
             playerTurn = false
-            
-        //player 2
-        }else if playerTurn != true{
+            boardArray[tag] = 1
+            return tag
+        }
+        
+        // If VS Computer
+        if player2.vsComputer && playerTurn == false{
+            let randomInt: Int = computerMove.randomElement()! // egen funktion
+            if boardArray[randomInt] == 0 {
+                boardArray[randomInt] = 1
+                player2Array.append(randomInt)
+                playerTurn = true
+                return randomInt
+            }
+            return switchTurn(tag: tag)
+        }
+        
+        // Player 2
+        if playerTurn == false{
             player2Array.append(tag)
             playerTurn = true
+            return tag
         }
+        return 0
     }
     
     func buttonPressed() -> Int{
@@ -101,20 +121,20 @@ class GameLogic {
         }
         
         if winConditions.count - drawConditions.count == 0 {
-            print("draw 1")
             return GAME_STATUS_GAMEDRAW
         } else if winConditions.allSatisfy(drawConditions.contains){
-            print("draw 2")
             return GAME_STATUS_GAMEDRAW
         } else{
             for condition in winConditions{
                 if condition.allSatisfy(playerArr.contains){
                     if playerTurn == true {
+                        player2.score += 1
+                        print(player2.score)
                         return GAME_STATUS_PLAYER2WON
-                        
                     }else{
+                        player1.score += 1
+                        print(player1.score)
                         return GAME_STATUS_PLAYER1WON
-                        
                     }
                 }
             }

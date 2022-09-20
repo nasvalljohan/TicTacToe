@@ -2,6 +2,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var scoreNamep1: UILabel!
+    @IBOutlet weak var scoreNamep2: UILabel!
+    @IBOutlet weak var scoreP1: UILabel!
+    @IBOutlet weak var scoreP2: UILabel!
     @IBOutlet weak var btnPlayAgain: UIButton!
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var lblWinner: UILabel!
@@ -20,7 +24,14 @@ class ViewController: UIViewController {
         lblWinner.isHidden = true
         gameLogic.player1.playerName = p1NameReceived ?? "player 1"
         gameLogic.player2.playerName = p2NameReceived ?? "player 2"
+        gameLogic.player2.vsComputer = boolReceived
+        scoreNamep1.text = gameLogic.player1.playerName
+        scoreNamep2.text = gameLogic.player2.playerName
+        scoreP1.text = String(gameLogic.player1.score)
+        scoreP2.text = String(gameLogic.player2.score)
+        
         lblTurn.text = "\(gameLogic.player1.playerName) turn to play"
+
     }
     
     //MARK: UI SWITCH
@@ -43,6 +54,7 @@ class ViewController: UIViewController {
                 buttons[tag].setTitle("O", for: .normal)
                 buttons[tag].titleLabel?.font = .systemFont(ofSize: 80)}
             lblWinner.text = "\(gameLogic.player1.playerName) is the winner"
+            scoreP1.text = String(gameLogic.player1.score)
             disableButtons()
             
         case gameLogic.GAME_STATUS_PLAYER2WON:
@@ -50,6 +62,7 @@ class ViewController: UIViewController {
                 buttons[tag].setTitle("X", for: .normal)
                 buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)}
             lblWinner.text = "\(gameLogic.player2.playerName) is the winner"
+            scoreP2.text = String(gameLogic.player1.score)
             disableButtons()
             
         case gameLogic.GAME_STATUS_GAMEDRAW:
@@ -70,10 +83,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onPress(_ sender: UIButton) {
-        gameLogic.switchTurn(tag: sender.tag)
-        let result = gameLogic.buttonPressed()
-        uiToggles(tag: sender.tag, result: result)
-        buttons[sender.tag].isUserInteractionEnabled = false
+        let tag = gameLogic.switchTurn(tag: sender.tag)
+            let result = gameLogic.buttonPressed()
+            uiToggles(tag: tag, result: result)
+            buttons[(tag)].isUserInteractionEnabled = false
+
     }
     
     //MARK: UI Functions

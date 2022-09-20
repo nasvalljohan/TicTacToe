@@ -40,6 +40,7 @@ class EntryViewController: UIViewController {
             } else
             {
                 dVC.p2NameReceived = "MR Computer"
+                dVC.boolReceived = true
                 
                 
                 if inputP1.text == "" {
