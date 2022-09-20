@@ -56,7 +56,7 @@ class GameLogic {
     
     func buttonPressed() -> Int{
         let result = checkWinner(playerArr: playerTurn ? player2Array : player1Array)
-        
+
         if result != 0 {
             CURRENT_GAME_STATE = result
             return CURRENT_GAME_STATE
@@ -99,9 +99,12 @@ class GameLogic {
                 }
             }
         }
+        
         if winConditions.count - drawConditions.count == 0 {
+            print("draw 1")
             return GAME_STATUS_GAMEDRAW
         } else if winConditions.allSatisfy(drawConditions.contains){
+            print("draw 2")
             return GAME_STATUS_GAMEDRAW
         } else{
             for condition in winConditions{

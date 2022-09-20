@@ -9,32 +9,45 @@ class ViewController: UIViewController {
     
     var p1NameReceived: String?
     var p2NameReceived: String?
-    var gameLogic = GameLogic(player1: Player(playerName: "Player 1", score: 0), player2: Player(playerName: "Player 2", score: 0))
+    var boolReceived: Bool = false
+    var gameLogic = GameLogic(player1: Player(playerName: "Player 1", score: 0, vsComputer: false),
+                              player2: Player(playerName: "Player 2", score: 0, vsComputer: false))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         btnPlayAgain.isHidden = true
         lblWinner.isHidden = true
         gameLogic.player1.playerName = p1NameReceived ?? "player 1"
         gameLogic.player2.playerName = p2NameReceived ?? "player 2"
-        
         lblTurn.text = "\(gameLogic.player1.playerName) turn to play"
-        
     }
     
     //MARK: UI SWITCH
     func uiToggles(tag: Int, result: Int){
         switch result{
+        case gameLogic.GAME_STATUS_PLAYER1TURN:
+            if buttons[tag].titleLabel?.text == " " {
+                buttons[tag].setTitle("X", for: .normal)
+                buttons[tag].titleLabel?.font = .systemFont(ofSize: 80)
+                lblTurn.text = "\(gameLogic.player1.playerName) turn to play"}
+            
+        case gameLogic.GAME_STATUS_PLAYER2TURN:
+            if buttons[tag].titleLabel?.text == " "{
+                buttons[tag].setTitle("O", for: .normal)
+                buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)
+                lblTurn.text = "\(gameLogic.player2.playerName) turn to play"}
+            
         case gameLogic.GAME_STATUS_PLAYER1WON:
             if buttons[tag].titleLabel?.text == " " {
-                buttons[tag].setTitle("💩", for: .normal)
+                buttons[tag].setTitle("O", for: .normal)
                 buttons[tag].titleLabel?.font = .systemFont(ofSize: 80)}
             lblWinner.text = "\(gameLogic.player1.playerName) is the winner"
             disableButtons()
             
         case gameLogic.GAME_STATUS_PLAYER2WON:
             if buttons[tag].titleLabel?.text == " "{
-                buttons[tag].setTitle("🍌", for: .normal)
+                buttons[tag].setTitle("X", for: .normal)
                 buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)}
             lblWinner.text = "\(gameLogic.player2.playerName) is the winner"
             disableButtons()
@@ -43,20 +56,9 @@ class ViewController: UIViewController {
             lblWinner.text = "Game is a draw"
             if buttons[tag].titleLabel?.text == " "{
                 buttons[tag].setTitle("☠️", for: .normal)
-                buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)}
+                buttons[tag].titleLabel?.font =  .systemFont(ofSize: 70)}
             disableButtons()
             
-        case gameLogic.GAME_STATUS_PLAYER1TURN:
-            if buttons[tag].titleLabel?.text == " " {
-                buttons[tag].setTitle("🍌", for: .normal)
-                buttons[tag].titleLabel?.font = .systemFont(ofSize: 80)
-                lblTurn.text = "\(gameLogic.player1.playerName) turn to play"}
-            
-        case gameLogic.GAME_STATUS_PLAYER2TURN:
-            if buttons[tag].titleLabel?.text == " "{
-                buttons[tag].setTitle("💩", for: .normal)
-                buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)
-                lblTurn.text = "\(gameLogic.player2.playerName) turn to play"}
         default: return
         }
     }
@@ -66,10 +68,12 @@ class ViewController: UIViewController {
         resetBoard()
         gameLogic.resetAfterWin()
     }
+    
     @IBAction func onPress(_ sender: UIButton) {
         gameLogic.switchTurn(tag: sender.tag)
         let result = gameLogic.buttonPressed()
         uiToggles(tag: sender.tag, result: result)
+        buttons[sender.tag].isUserInteractionEnabled = false
     }
     
     //MARK: UI Functions
