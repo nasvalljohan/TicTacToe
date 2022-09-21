@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igE-PX-sZq">
-                                <rect key="frame" x="169.5" y="562" width="75" height="34.5"/>
+                                <rect key="frame" x="177.5" y="562" width="59.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Next"/>
                                 <connections>
                                     <action selector="onPress:" destination="U12-3K-s3i" eventType="touchUpInside" id="tUK-dK-5Og"/>
                                     <segue destination="BYZ-38-t0r" kind="showDetail" identifier="entryToGame" id="jx7-nN-MTZ"/>

@@ -4,7 +4,6 @@ import UIKit
 class GameLogic {
     
     var CURRENT_GAME_STATE: Int = 0
-    
     var GAME_STATUS_PLAYER1WON: Int = 1
     var GAME_STATUS_PLAYER2WON: Int = 2
     var GAME_STATUS_GAMEDRAW: Int = -1
@@ -22,9 +21,6 @@ class GameLogic {
     
     // MARK: Variables
     var playerTurn: Bool = true
-    var roundCounter: Int = 0
-    var player1won: Bool = false
-    var player2won: Bool = false
     var boardArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     var computerMove: Array<Int> = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     var player1Array: Array<Int> = []
@@ -36,9 +32,6 @@ class GameLogic {
     func resetAfterWin(){
         player1Array = []
         player2Array = []
-        player1won = false
-        player2won = false
-        roundCounter += 1
         drawConditions = []
         CURRENT_GAME_STATE = 0
         boardArray = [0,0,0,0,0,0,0,0,0]
@@ -54,7 +47,7 @@ class GameLogic {
         }
         
         // If VS Computer
-        if player2.vsComputer && playerTurn == false{
+        if player2.vsComputer && playerTurn == false {
             let randomInt: Int = computerMove.randomElement()! // egen funktion
             if boardArray[randomInt] == 0 {
                 boardArray[randomInt] = 1
