@@ -47,7 +47,11 @@ class ViewController: UIViewController {
             if buttons[tag].titleLabel?.text == " "{
                 buttons[tag].setTitle("O", for: .normal)
                 buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)
-                lblTurn.text = "\(gameLogic.player2.playerName) turn to play"}
+                lblTurn.text = "\(gameLogic.player2.playerName) turn to play"
+                if gameLogic.player2.vsComputer && gameLogic.playerTurn == false{
+                    buttons[tag].sendActions(for: .touchUpInside)
+                }
+            }
             
         case gameLogic.GAME_STATUS_PLAYER1WON:
             if buttons[tag].titleLabel?.text == " " {
@@ -62,7 +66,7 @@ class ViewController: UIViewController {
                 buttons[tag].setTitle("X", for: .normal)
                 buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)}
             lblWinner.text = "\(gameLogic.player2.playerName) is the winner"
-            scoreP2.text = String(gameLogic.player1.score)
+            scoreP2.text = String(gameLogic.player2.score)
             disableButtons()
             
         case gameLogic.GAME_STATUS_GAMEDRAW:
@@ -83,11 +87,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onPress(_ sender: UIButton) {
+        
         let tag = gameLogic.switchTurn(tag: sender.tag)
-            let result = gameLogic.buttonPressed()
-            uiToggles(tag: tag, result: result)
-            buttons[(tag)].isUserInteractionEnabled = false
-
+        let result = gameLogic.buttonPressed()
+        uiToggles(tag: tag, result: result)
+        buttons[(tag)].isUserInteractionEnabled = false
+        
     }
     
     //MARK: UI Functions
@@ -104,6 +109,12 @@ class ViewController: UIViewController {
         btnPlayAgain.isHidden = true
         lblWinner.isHidden = true
         lblTurn.isHidden = false
+        
+        if gameLogic.playerTurn {
+            lblTurn.text = "\(gameLogic.player1.playerName) turn to play"
+        } else{
+            lblTurn.text = "\(gameLogic.player2.playerName) turn to play"
+        }
         
         for button in buttons{
             button.setTitle(" ", for: .normal)

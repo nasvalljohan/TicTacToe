@@ -122,11 +122,9 @@ class GameLogic {
                 if condition.allSatisfy(playerArr.contains){
                     if playerTurn == true {
                         player2.score += 1
-                        print(player2.score)
                         return GAME_STATUS_PLAYER2WON
                     }else{
                         player1.score += 1
-                        print(player1.score)
                         return GAME_STATUS_PLAYER1WON
                     }
                 }
