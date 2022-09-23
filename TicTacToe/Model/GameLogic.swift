@@ -29,6 +29,7 @@ class GameLogic {
     var winConditions: Array<Array<Int>> = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]]
     
     // MARK: Func
+    // Resetting variables, called same time as UI reset from viewcontroller
     func resetAfterWin(){
         player1Array = []
         player2Array = []
@@ -37,6 +38,7 @@ class GameLogic {
         boardArray = [0,0,0,0,0,0,0,0,0]
     }
     
+    // Called every buttonpress, tag is buttonID 
     func switchTurn(tag: Int) -> Int{
         //Player 1
         if playerTurn == true{
@@ -45,8 +47,7 @@ class GameLogic {
             boardArray[tag] = 1
             return tag
         }
-        
-        // If VS Computer
+        // If player 2 is computer
         if player2.vsComputer && playerTurn == false {
             let randomInt: Int = computerMove.randomElement()! // egen funktion
             if boardArray[randomInt] == 0 {
@@ -57,7 +58,6 @@ class GameLogic {
             }
             return switchTurn(tag: tag)
         }
-        
         // Player 2
         if playerTurn == false{
             player2Array.append(tag)
@@ -67,14 +67,17 @@ class GameLogic {
         return 0
     }
     
+    
+    // Only checking if we have a winner or if game is draw
     func buttonPressed() -> Int{
+        
+        // Checkwinner only returns 0, 1, 2 or -1
         let result = checkWinner(playerArr: playerTurn ? player2Array : player1Array)
 
         if result != 0 {
             CURRENT_GAME_STATE = result
             return CURRENT_GAME_STATE
         }
-        
         if playerTurn == true {
             CURRENT_GAME_STATE = GAME_STATUS_PLAYER1TURN
         } else {
@@ -84,12 +87,13 @@ class GameLogic {
     }
     
     // MARK: CheckWinner
+    
+    // Checks if playerarrays contains 1 number from same wincondition
+    // if yes add winCondition to drawCondition
     func checkWinner(playerArr: Array<Int>) -> Int{
         for (_, condition) in winConditions.enumerated() {
-            // Elements of inner array
             for _ in condition{
-                // Does playerarrays contain numbers from same wincondition?
-                // if yes add that winCondition to drawCondition
+                
                 if player1Array.contains(condition[0]) && player2Array.contains(condition[1]) || player1Array.contains(condition[1]) && player2Array.contains(condition[0]){
                     
                     for _ in winConditions{
@@ -113,6 +117,7 @@ class GameLogic {
             }
         }
         
+        // Checks if win or draw
         if winConditions.count - drawConditions.count == 0 {
             return GAME_STATUS_GAMEDRAW
         } else if winConditions.allSatisfy(drawConditions.contains){

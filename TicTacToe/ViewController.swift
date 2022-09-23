@@ -29,12 +29,12 @@ class ViewController: UIViewController {
         scoreNamep2.text = gameLogic.player2.playerName
         scoreP1.text = String(gameLogic.player1.score)
         scoreP2.text = String(gameLogic.player2.score)
-        
         lblTurn.text = "\(gameLogic.player1.playerName) turn to play"
 
     }
     
-    //MARK: UI SWITCH
+    //MARK: UI Switch
+    // Modifying ui depending on gamestatus (result)
     func uiToggles(tag: Int, result: Int){
         switch result{
         case gameLogic.GAME_STATUS_PLAYER1TURN:
@@ -49,8 +49,7 @@ class ViewController: UIViewController {
                 buttons[tag].titleLabel?.font =  .systemFont(ofSize: 80)
                 lblTurn.text = "\(gameLogic.player2.playerName) turn to play"
                 if gameLogic.player2.vsComputer && gameLogic.playerTurn == false{
-                    buttons[tag].sendActions(for: .touchUpInside)
-                }
+                    buttons[tag].sendActions(for: .touchUpInside)}
             }
             
         case gameLogic.GAME_STATUS_PLAYER1WON:
@@ -75,19 +74,21 @@ class ViewController: UIViewController {
                 buttons[tag].setTitle("☠️", for: .normal)
                 buttons[tag].titleLabel?.font =  .systemFont(ofSize: 70)}
             disableButtons()
-            
-        default: return
+            default: return
         }
     }
     
+    
     //MARK: IBActions
+    
+    // Button for play again
     @IBAction func playAgainPress(_ sender: Any) {
         resetBoard()
         gameLogic.resetAfterWin()
     }
     
+    // Boardbuttons
     @IBAction func onPress(_ sender: UIButton) {
-        
         let tag = gameLogic.switchTurn(tag: sender.tag)
         let result = gameLogic.buttonPressed()
         uiToggles(tag: tag, result: result)
@@ -96,6 +97,8 @@ class ViewController: UIViewController {
     }
     
     //MARK: UI Functions
+    
+    // Disabling buttons if wincondition met, called in uiToggles/switch
     func disableButtons(){
         lblWinner.isHidden = false
         btnPlayAgain.isHidden = false
@@ -105,6 +108,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // Resetting board, caled in playAgainPress
     func resetBoard(){
         btnPlayAgain.isHidden = true
         lblWinner.isHidden = true

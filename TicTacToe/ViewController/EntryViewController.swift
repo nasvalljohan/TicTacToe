@@ -28,7 +28,7 @@ class EntryViewController: UIViewController {
         if segue.identifier == entryToGame {
             let dVC = segue.destination as! ViewController
 
-            
+            // IF on its pvp else pve
             if uiSwitch.isOn{
                 if inputP1.text == "" || inputP2.text == ""{
                     dVC.p1NameReceived = "Player 1"
@@ -42,7 +42,6 @@ class EntryViewController: UIViewController {
                 dVC.p2NameReceived = "MR Computer"
                 dVC.boolReceived = true
                 
-                
                 if inputP1.text == "" {
                     dVC.p1NameReceived = "Player 1"
                 } else
@@ -54,6 +53,7 @@ class EntryViewController: UIViewController {
         }
     }
     
+    // If on its pvp else pve
     @IBAction func onSwitch(_ sender: Any) {
         if uiSwitch.isOn {
             lblSwitch.text = "VS Player"
@@ -65,8 +65,8 @@ class EntryViewController: UIViewController {
             lblP2.isHidden = true
         }
     }
+    
     @IBAction func onPress(_ sender: Any) {
         performSegue(withIdentifier: entryToGame, sender: self)
     }
-    
 }
