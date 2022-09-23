@@ -9,8 +9,7 @@ class GameLogic {
     var GAME_STATUS_GAMEDRAW: Int = -1
     var GAME_STATUS_PLAYER1TURN: Int = 11
     var GAME_STATUS_PLAYER2TURN: Int = 22
-    
-    // MARK: Instances
+
     var player1: Player
     var player2: Player
     
@@ -19,7 +18,6 @@ class GameLogic {
         self.player2 = player2
     }
     
-    // MARK: Variables
     var playerTurn: Bool = true
     var boardArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     var computerMove: Array<Int> = [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -49,14 +47,14 @@ class GameLogic {
         }
         // If player 2 is computer
         if player2.vsComputer && playerTurn == false {
-            let randomInt: Int = computerMove.randomElement()! // egen funktion
+            let randomInt: Int = computerMove.randomElement()!
             if boardArray[randomInt] == 0 {
                 boardArray[randomInt] = 1
                 player2Array.append(randomInt)
                 playerTurn = true
                 return randomInt
             }
-            return switchTurn(tag: tag)
+            return switchTurn(tag: tag) // go again if boardarray @randomint == 0
         }
         // Player 2
         if playerTurn == false{
